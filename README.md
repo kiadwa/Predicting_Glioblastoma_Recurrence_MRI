@@ -94,4 +94,6 @@ If you prefer an interactive environment, the repository now includes `notebooks
 
 Make sure to place the pre-trained `model.pkl` file in the project root before running the inference cells.
 
+To train your own voxel-wise CatBoost model with the same feature set and scaling strategy, start from `notebooks/Train_CatBoost_Voxel_Model.ipynb`. The training notebook walks through feature extraction, cohort assembly, scaler fitting, CatBoost configuration, and serialisation of a repository-compatible `model.pkl` bundle.
+
 
