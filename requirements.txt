@@ -15,3 +15,5 @@ trimesh==3.13.0
 xgboost==1.6.0
 lightgbm==4.4.0
 catboost==1.0.6
+cython
+pydensecrf

@@ -1,21 +1,28 @@
-FROM ubuntu:latest
+FROM python:3.9-slim
 
-RUN apt-get clean && apt-get update \
-    && apt-get update \
-    && apt-get install python3.9 python3-pip -y
+ENV DEBIAN_FRONTEND=noninteractive \
+    PIP_NO_CACHE_DIR=1
 
-RUN pip install \
-       numpy==1.21.6 \
-       nibabel==4.0.2 \
-       matplotlib==3.6.2 \
-       pandas==1.5.2 \
-       scikit_image==0.19.3 \
-       scipy==1.9.3 \
-       SimpleITK==2.2.0 \
-       tqdm==4.64.1
-       
-RUN pip install pyradiomics==3.0.1
+# Build tools + runtime libs for matplotlib/SimpleITK
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential gcc g++ cmake \
+    libglib2.0-0 libsm6 libxext6 libxrender1 \
+ && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /usr/src/app
+WORKDIR /app
+COPY requirements.txt .
 
+# 1) Tools + NumPy first (needed for pyradiomics' setup.py)
+RUN python -m pip install --upgrade pip setuptools wheel \
+ && pip install "numpy==1.21.6"
+
+# 2) Install the rest; disable build isolation so setup.py can import NumPy
+RUN pip install --no-build-isolation --no-cache-dir -r requirements.txt  \
+    && pip install --no-cache-dir wandb      
+
+ENV WANDB_DISABLED=true
+
+# 3) Your code
 COPY . .
+# uncomment if you always run this
+CMD ["python", "main.py"]

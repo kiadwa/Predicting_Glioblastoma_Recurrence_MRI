@@ -1,0 +1,10 @@
+services:
+  app:
+    image: gbm:py39   # or: build: .
+    working_dir: /app
+    command: python main.py
+    environment:
+      WANDB_DISABLED: "true"
+    volumes:
+      - .:/app
+      - C:\path\to\data:/app/data

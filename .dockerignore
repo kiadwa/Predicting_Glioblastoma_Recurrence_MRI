@@ -1,0 +1,27 @@
+.git
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints/
+.venv/
+env/
+venv/
+
+# big data/artifacts
+data/
+datasets/
+results/
+outputs/
+checkpoints/
+models/
+weights/
+artifacts/
+tmp/
+**/*.nii
+**/*.nii.gz
+**/*.dcm
+**/*.h5
+**/*.pt
+**/*.pth
+**/*.npz
+**/*.zip
+**/*.tar*
