@@ -78,10 +78,20 @@ A folder named `Patients` containing the patients' data to be analysed is expect
 
 #### Usage
 
-The main function is in `main.py`, and to run the code over all the patients, one must run 
+The main function is in `main.py`, and to run the code over all the patients, one must run
 ```
 python main.py
 ```
 from within the code folder. Once the script is done, each patient will have their results stored within their respective subfolder.
+
+### Jupyter notebook workflow
+
+If you prefer an interactive environment, the repository now includes `notebooks/Glioblastoma_Recurrence_Notebook.ipynb`. The notebook mirrors the `main.py` pipeline while pinning the dependencies to an up-to-date stack that has been validated with the current code. Open it in JupyterLab, VS Code, or Google Colab to:
+
+* install a modern environment in one click,
+* trigger feature extraction and inference for all available patients, and
+* inspect the generated recurrence maps directly from the notebook UI.
+
+Make sure to place the pre-trained `model.pkl` file in the project root before running the inference cells.
 
 
